@@ -1,22 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
 import Loader from './Loader';
+import useLocation from './useLocation';
 
 const App = () => {
-  const [lat, setLat] = useState(null);
-  const [errorMsg, setErrorMsg] = useState('');
-
-  const fetchtLocation = () => {
-    window.navigator.geolocation.getCurrentPosition(
-      pos => setLat(pos.coords.latitude),
-      err => setErrorMsg(err.message)
-    );
-  };
-
-  useEffect(() => {
-    fetchtLocation();
-  }, []);
+  const [lat, errorMsg] = useLocation();
 
   return (
     <div>
